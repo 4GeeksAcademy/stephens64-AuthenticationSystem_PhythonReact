@@ -3,10 +3,10 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
 export const Private = () => {
-    const {actions} = useContext(Context)
+    const { actions } = useContext(Context)
     const [isAuthenticated, setIsAuthenticated] = useState("Pending")
 
-    useEffect(()=> {
+    useEffect(() => {
         let authenticate = async () => {
             try {
                 const result = await actions.goPrivate();
@@ -21,7 +21,7 @@ export const Private = () => {
         authenticate();
     }, [actions])
 
-    switch(isAuthenticated) {
+    switch (isAuthenticated) {
         case "Pending":
             return (
                 <div className="container text-center mt-5">
@@ -32,11 +32,11 @@ export const Private = () => {
             return (
                 <div className="container text-center mt-5">
                     <h1>
-                    <i className="fa-solid fa-user-secret"></i>
-                    Super Secret Page
-                    <i className="fa-solid fa-user-secret"></i>
+                        <i className="fa-solid fa-user-secret"></i>
+                        Super Secret Page
+                        <i className="fa-solid fa-user-secret"></i>
                     </h1>
-                    <p>Only you can see this page</p>
+                    <p>Only you have access to this page</p>
 
                 </div>
             )
@@ -44,9 +44,9 @@ export const Private = () => {
             return (
                 <div className="container text-center mt-5">
                     <h1>
-                    <i className="fa-solid fa-user-slash fa-shake"></i>
-                    Where you going?
-                    <i className="fa-solid fa-user-slash fa-shake"></i>
+                        <i className="fa-solid fa-user-slash fa-shake"></i>
+                        Leaving so soon?
+                        <i className="fa-solid fa-user-slash fa-shake"></i>
                     </h1>
                     <p>Please login to access private page</p>
                     <Link to="/login"><p>Login</p></Link>
