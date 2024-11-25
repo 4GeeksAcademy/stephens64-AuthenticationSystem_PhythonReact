@@ -2,9 +2,26 @@ import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
+import { useState } from "react";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
+    const {email, setEmail} = useState("");
+	const {password, setPassword} = useState("");
+
+	const login = () => {
+		fetch('https://fantastic-telegram-7vrwpp74rqg43pqwv-3001.app.github.dev/token', {
+			method: "POST",
+			headers: {"Content-Type": "application/json" },
+			body: JSON.stringify({email, password})
+		})
+		.then(resp => resp.json())
+        .then(data => {
+			console.log(data);
+			localStorage.setItem ("jwt-token", data.token)
+	})
+        .catch(err => console.log(err))
+	}
 
 	return (
 		<div className="text-center mt-5">
